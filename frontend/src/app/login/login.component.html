@@ -1,0 +1,5 @@
+<p>Name:</p>
+<input id="name" [(ngModel)]="user.name" placeholder="name">
+<button (click)="host_room(user.name)">Host</button>
+<input id="roomId" [(ngModel)]="user.room" placeholder="room id">
+<button (click)="connect_to_room(user.name, user.room)">Join</button>
