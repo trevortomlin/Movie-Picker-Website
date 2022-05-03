@@ -1,0 +1,35 @@
+<h1 class="roomcode-text">Room Code:</h1>
+
+<div class ="random-movie">
+    <button class="random-button">Random Movie</button>
+</div>
+
+<div class ="create-movie">
+    <input id="new-movie" placeholder="enter a movie">
+    <button class="create-button">Add</button>
+</div>
+
+<div class="movies-list">
+  <!-- <p *ngFor="let movie of movies">
+    {{movie.user.name}}
+    {{movie.title}}
+  </p> -->
+
+  <table class="movie-table">
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+    </tr>
+    <tr *ngFor="let movie of movies">
+        <td>{{movie.title}}</td>
+        <td>{{movie.user.name}}</td>
+        <button class="remove-button" (click)="removeMovie(movie)">X</button>
+    </tr>
+  </table> 
+
+  <!-- <ul class="heroes">
+    <li *ngFor="let movie of movies">
+      <span class="badge">{{movie.user.name}}</span> {{movie.title}}
+    </li>
+  </ul> -->
+</div>

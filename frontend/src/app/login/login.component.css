@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Source+Code+Pro&display=swap');
 
+.title {
+
+    margin-top: 100px;
+
+    font-size: 75px;
+    text-align: center;
+    color: white;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: normal;
+
+}
 
 div {
     
