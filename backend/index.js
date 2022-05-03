@@ -36,6 +36,25 @@ io.on('connection', (socket) => {
 
   });
 
+  socket.on("add movie", (title, user, room) => {
+
+    var obj = {title: title, user: {name: user, room: room}};
+
+    console.log(user + " has added " + title);
+    socket.to(room).emit("add movie", obj);
+
+  });
+
+  socket.on("remove movie", (title, user, room) => {
+
+    var obj = {title: title, user: {user, room}};
+
+    console.log(user + " has removed " + title);
+    io.to(room).emit("remove movie", obj);
+
+  });
+
+
 });
 
 server.listen(3000, () => {
