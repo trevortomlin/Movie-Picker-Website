@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { User } from '../User';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
     if (name.length > 0 && room.length == 5) {
 
       this.SocketService.connect_to_room(name, room);
+      this.router.navigateByUrl('/dashboard')
 
     }
 
@@ -33,15 +36,27 @@ export class LoginComponent implements OnInit {
 
   host_room(name: string) {
 
-    this.SocketService.hostRoom(name);
+    if (name.length > 0) {
+
+      this.SocketService.hostRoom(name);
+      this.router.navigateByUrl('/dashboard')
+
+    }
+
+    else {
+
+      console.log("Invalid Name");
+
+    }
 
   }
 
-  constructor(private SocketService : SocketService) { 
+  constructor(private SocketService : SocketService, 
+              public UserService: UserService,
+              private router: Router) { 
 
     this.SocketService.getRoomID().subscribe( (data ) => {
-      console.log('User data', data);
-      this.user.room = data as string;
+      this.UserService.user.room = data as string;
   })
 
   }

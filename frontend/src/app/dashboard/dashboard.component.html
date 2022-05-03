@@ -1,12 +1,12 @@
-<h1 class="roomcode-text">Room Code:</h1>
+<h1 class="roomcode-text">Room Code: {{UserService.user.room}}</h1>
 
 <div class ="random-movie">
-    <button class="random-button">Random Movie</button>
+    <button class="random-button" (click)="randomMovie()">Random Movie</button>
 </div>
 
 <div class ="create-movie">
-    <input id="new-movie" placeholder="enter a movie">
-    <button class="create-button">Add</button>
+    <input id="new-movie" placeholder="enter a movie" [(ngModel)]="titleText">
+    <button class="create-button" (click)="addMovie(titleText, UserService.user)">Add</button>
 </div>
 
 <div class="movies-list">

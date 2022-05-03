@@ -1,8 +1,8 @@
 <h1 class="title">Movie Picker</h1>
 
 <div class="login-form">
-    <input id="name" [(ngModel)]="user.name" placeholder="enter your name">
-    <input id="roomId" [(ngModel)]="user.room" placeholder="room id">
-    <button (click)="host_room(user.name)">Host</button>
-    <button (click)="connect_to_room(user.name, user.room)">Join</button>
+    <input id="name" [(ngModel)]="UserService.user.name" placeholder="enter your name">
+    <input id="roomId" [(ngModel)]="UserService.user.room" placeholder="room id">
+    <button (click)="host_room(UserService.user.name)">Host</button>
+    <button (click)="connect_to_room(UserService.user.name, UserService.user.room)" (click)="UserService.printUser()">Join</button>
 </div>
