@@ -3,6 +3,8 @@ import { SocketService } from '../socket.service';
 import { User } from '../User';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FailedLoginDialogComponent } from '../failed-login-dialog/failed-login-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +18,27 @@ export class LoginComponent implements OnInit {
     room: ""
   };
 
+  openErrorDialog(error: string) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = {
+      type: error
+    };
+
+    dialogConfig.width = '500px';
+    dialogConfig.height = '200px';
+
+    // dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(FailedLoginDialogComponent, dialogConfig);
+}
+
   connect_to_room(name: string, room: string) {
 
-    if (name.length > 0 && room.length == 5) {
+
+    if (name != undefined && room != undefined && name.length > 0 && room.length == 5) {
 
       this.SocketService.connect_to_room(name, room);
       this.router.navigateByUrl('/dashboard')
@@ -27,7 +47,7 @@ export class LoginComponent implements OnInit {
 
     else {
 
-      console.log("Invalid Name or Room");
+      this.openErrorDialog("Name or Room");
 
     }
 
@@ -36,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   host_room(name: string) {
 
-    if (name.length > 0) {
+    if (name != undefined && name.length > 0) {
 
       this.SocketService.hostRoom(name);
       this.router.navigateByUrl('/dashboard')
@@ -45,7 +65,7 @@ export class LoginComponent implements OnInit {
 
     else {
 
-      console.log("Invalid Name");
+      this.openErrorDialog("Name");
 
     }
 
@@ -53,7 +73,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private SocketService : SocketService, 
               public UserService: UserService,
-              private router: Router) { 
+              private router: Router,
+              private dialog: MatDialog) { 
 
     this.SocketService.getRoomID().subscribe( (data ) => {
       this.UserService.user.room = data as string;
