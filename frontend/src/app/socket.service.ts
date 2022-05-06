@@ -6,13 +6,6 @@ import { map } from 'rxjs/operators';
 import { Movie } from './Movie';
 import { User } from './User';
 
-export class MovieRecord{
-
-  title: string = '';
-  user: string = '';
-
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +22,7 @@ export class SocketService {
   hostRoom(name: string){
 
     this.socket.emit("user hosted", name);
-    //return this.socket.fromEvent('room joined');
+
   }
 
   getRoomID() {

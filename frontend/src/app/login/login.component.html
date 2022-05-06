@@ -1,8 +1,19 @@
-<h1 class="title">Movie Picker v1</h1>
-
 <div class="login-form">
-    <input id="name" [(ngModel)]="UserService.user.name" placeholder="enter your name">
-    <input id="roomId" [(ngModel)]="UserService.user.room" placeholder="room id">
-    <button (click)="host_room(UserService.user.name)">Host</button>
-    <button (click)="connect_to_room(UserService.user.name, UserService.user.room)" (click)="UserService.printUser()">Join</button>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>name</mat-label>
+        <input matInput id="name" [(ngModel)]="UserService.user.name" placeholder="enter your name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>room</mat-label>
+        <input matInput id="roomId" [(ngModel)]="UserService.user.room" placeholder="room id">
+        <mat-hint align="start"><strong>Joining Only</strong> </mat-hint>
+    </mat-form-field>
+    
+    <div class="login-buttons">
+        <button mat-raised-button color="primary" (click)="host_room(UserService.user.name)">Host</button>
+        <button mat-raised-button color="primary" (click)="connect_to_room(UserService.user.name, UserService.user.room)" (click)="UserService.printUser()">Join</button>
+    </div>
+
 </div>
