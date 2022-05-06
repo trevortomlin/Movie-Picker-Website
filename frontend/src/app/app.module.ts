@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -33,6 +34,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

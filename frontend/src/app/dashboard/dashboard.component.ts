@@ -4,6 +4,9 @@ import { SocketService } from '../socket.service';
 import { User } from '../User';
 import { UserService } from '../user.service';
 
+import {ViewChild} from '@angular/core';
+import { MatTable } from '@angular/material/table';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,9 +14,12 @@ import { UserService } from '../user.service';
 })
 export class DashboardComponent implements OnInit {
 
+  @ViewChild('table') table: any;
+
   movies : Movie[] = [];
 
-  // m: Movie = {user: {name:"Chad", room:"test"}, title: "Shrek 2"};
+  //m: Movie = {user: {name:"Chad", room:"test"}, title: "Shrek 2"};
+
   // m2: Movie = {user: {name:"Thad", room:"test"}, title: "Star Wars"};
 
   titleText: string = "";
@@ -40,6 +46,8 @@ export class DashboardComponent implements OnInit {
 
     this.SocketService.addMovie(title, user);
 
+    this.table.renderRows();
+
   }
 
   removeMovie(movie: Movie){
@@ -47,6 +55,8 @@ export class DashboardComponent implements OnInit {
     this.movies = this.movies.filter(h => h !== movie);
 
     this.SocketService.removeMovie(movie.title, movie.user);
+
+    this.table.renderRows();
 
   }
 

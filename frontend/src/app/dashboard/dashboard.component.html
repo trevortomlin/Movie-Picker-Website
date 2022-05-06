@@ -1,35 +1,40 @@
 <h1 class="roomcode-text">Room Code: {{UserService.user.room}}</h1>
 
-<div class ="random-movie">
-    <button class="random-button" (click)="randomMovie()">Random Movie</button>
-</div>
+<div class="wrapper">
 
-<div class ="create-movie">
-    <input id="new-movie" placeholder="enter a movie" [(ngModel)]="titleText">
-    <button class="create-button" (click)="addMovie(titleText, UserService.user)">Add</button>
-</div>
+    <div class ="random-movie">
+        <button mat-raised-button color="primary" class="random-button" (click)="randomMovie()">Random Movie</button>
+    </div>
 
-<div class="movies-list">
-  <!-- <p *ngFor="let movie of movies">
-    {{movie.user.name}}
-    {{movie.title}}
-  </p> -->
+    <div class ="create-movie">
+        <input appearance="outline" matInput id="new-movie" placeholder="enter a movie" [(ngModel)]="titleText">
+        <button mat-raised-button color="primary" class="create-button" (click)="addMovie(titleText, UserService.user)">Add</button>
+    </div>
 
-  <table class="movie-table">
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-    </tr>
-    <tr *ngFor="let movie of movies">
-        <td>{{movie.title}}</td>
-        <td>{{movie.user.name}}</td>
-        <button class="remove-button" (click)="removeMovie(movie)">X</button>
-    </tr>
-  </table> 
+    <div class="movies-list">
 
-  <!-- <ul class="heroes">
-    <li *ngFor="let movie of movies">
-      <span class="badge">{{movie.user.name}}</span> {{movie.title}}
-    </li>
-  </ul> -->
+    <mat-table #table class="movie-table" [dataSource]="movies">
+
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+            <mat-cell *matCellDef="let movie"> {{movie.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+            <mat-header-cell *matHeaderCellDef>User</mat-header-cell>
+            <mat-cell *matCellDef="let movie"> {{movie.user.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let movie" ><button mat-button color="warn" class="remove-button" (click)="removeMovie(movie)">Remove</button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['title', 'user', 'delete']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['title', 'user', 'delete'];"></mat-row>
+
+    </mat-table> 
+
+    </div>
+
 </div>
