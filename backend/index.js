@@ -50,7 +50,16 @@ io.on('connection', (socket) => {
     var obj = {title: title, user: {user, room}};
 
     console.log(user + " has removed " + title);
-    io.to(room).emit("remove movie", obj);
+    socket.to(room).emit("remove movie", obj);
+
+  });
+
+  socket.on("random movie", (title, user, room) => {
+
+    var obj = {title: title, user: {name: user, room: room}};
+
+    console.log(user + " chose " + title);
+    socket.to(room).emit("random movie", obj);
 
   });
 

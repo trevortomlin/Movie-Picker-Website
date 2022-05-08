@@ -42,6 +42,12 @@ export class SocketService {
 
   }
 
+  getRandomMovie() {
+
+    return this.socket.fromEvent<Movie>("random movie").pipe(map( data => data ));
+
+  }
+
   addMovie(title : string, user: User) {
 
     this.socket.emit("add movie", title, user.name, user.room);
@@ -51,6 +57,12 @@ export class SocketService {
   removeMovie(title : string, user: User) {
 
     this.socket.emit("remove movie", title, user.name, user.room);
+
+  }
+
+  randomMovie(title : string, user: User) {
+
+    this.socket.emit("random movie", title, user.name, user.room);
 
   }
 

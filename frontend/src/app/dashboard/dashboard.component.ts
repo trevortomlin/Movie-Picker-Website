@@ -21,12 +21,14 @@ export class DashboardComponent implements OnInit {
 
   titleText: string = "";
 
-  openRandomMovieDialog(name: string, title: string) {
+  openRandomMovieDialog(title: string, user: User) {
+
+    this.dialog.closeAll();
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.data = {
-      name: name,
+      name: user.name,
       title: title
     };
 
@@ -47,10 +49,11 @@ export class DashboardComponent implements OnInit {
     }
 
     const randomElement = this.movies[Math.floor(Math.random() * this.movies.length)];
-    
-    console.log(randomElement);
+  
 
-    this.openRandomMovieDialog(randomElement.user.name, randomElement.title);
+    this.SocketService.randomMovie(randomElement.title, this.UserService.getUser());
+
+    this.openRandomMovieDialog(randomElement.title, this.UserService.getUser());
     
     return randomElement;
 
@@ -58,7 +61,11 @@ export class DashboardComponent implements OnInit {
 
   addMovie(title: string, user: User) {
 
-    this.UserService.printUser();
+    if (title.length == 0) {
+
+      return;
+
+    }
 
     let movie = {user: user, title: title};
 
@@ -94,6 +101,8 @@ export class DashboardComponent implements OnInit {
 
       this.movies.push(movie);
 
+      this.table.renderRows();
+
     })
 
     this.SocketService.getMovieRemove().subscribe( (data ) => {
@@ -103,6 +112,20 @@ export class DashboardComponent implements OnInit {
       const movie = {title: data['title'], user: user};
 
       this.movies = this.movies.filter(h => h.title !== movie.title && h.user.name !== movie.user.name && h.user.room !== movie.user.room);
+
+      this.table.renderRows();
+
+    })
+
+    this.SocketService.getRandomMovie().subscribe( (data ) => {
+
+      const user = {name: data['user']['name'], room: data['user']['room']};
+      
+      const movie = {title: data['title'], user: user};
+
+      console.log(user.name + " has chosen " + movie.title);
+
+      this.openRandomMovieDialog(movie.title, user);
 
     })
 

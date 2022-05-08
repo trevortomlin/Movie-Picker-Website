@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-randommoviedialog',
@@ -14,6 +14,7 @@ export class RandommoviedialogComponent implements OnInit {
   constructor(
 
     private dialogRef: MatDialogRef<RandommoviedialogComponent>,
+    private dialog: MatDialog,
 
     @Inject(MAT_DIALOG_DATA) data:any) {
 
@@ -26,6 +27,9 @@ export class RandommoviedialogComponent implements OnInit {
 
   }
 
+  onClose(): void {
+    this.dialog.closeAll();
+  }
 
   close() {
       this.dialogRef.close();
