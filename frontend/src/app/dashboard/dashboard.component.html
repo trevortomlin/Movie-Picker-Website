@@ -6,8 +6,8 @@
         <button mat-raised-button color="primary" class="random-button" (click)="randomMovie()">Random Movie</button>
     </div>
 
-    <div class ="create-movie">
-        <input appearance="outline" matInput id="new-movie" placeholder="enter a movie" [(ngModel)]="titleText">
+    <div class ="create-movie" >
+        <input matInput id="new-movie" placeholder="enter a movie" [(ngModel)]="titleText">
         <button mat-raised-button color="primary" class="create-button" (click)="addMovie(titleText, UserService.user)">Add</button>
     </div>
 

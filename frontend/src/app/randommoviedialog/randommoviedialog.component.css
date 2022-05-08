@@ -1,0 +1,14 @@
+p {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+mat-dialog-actions {
+
+    display: flex;
+    justify-content: right;
+
+}

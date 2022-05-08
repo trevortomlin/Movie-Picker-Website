@@ -17,6 +17,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from "@angular/material/dialog";
 import { FailedLoginDialogComponent } from './failed-login-dialog/failed-login-dialog.component';
+import { RandommoviedialogComponent } from './randommoviedialog/randommoviedialog.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -25,7 +26,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    FailedLoginDialogComponent
+    FailedLoginDialogComponent,
+    RandommoviedialogComponent
   ],
   imports: [
     BrowserModule,
