@@ -10,7 +10,6 @@ export class FailedLoginDialogComponent implements OnInit {
 
   type:string;
 
-
   constructor(
 
     private dialogRef: MatDialogRef<FailedLoginDialogComponent>,

@@ -19,10 +19,6 @@ export class DashboardComponent implements OnInit {
 
   movies : Movie[] = [];
 
-  //m: Movie = {user: {name:"Chad", room:"test"}, title: "Shrek 2"};
-
-  // m2: Movie = {user: {name:"Thad", room:"test"}, title: "Star Wars"};
-
   titleText: string = "";
 
   openRandomMovieDialog(name: string, title: string) {
@@ -37,7 +33,6 @@ export class DashboardComponent implements OnInit {
     dialogConfig.width = '300px';
     dialogConfig.height = '175px';
 
-    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     this.dialog.open(RandommoviedialogComponent, dialogConfig);
@@ -99,19 +94,9 @@ export class DashboardComponent implements OnInit {
 
       this.movies.push(movie);
 
-      //console.log(user);
-
-      //this.addMovie(data['title'], user);
-      //this.addMovie(data[0], data[1]);
-      //console.log(data);
-      //console.log(data['title'] + data['user'] );
-      //console.log(typeof data);
-      //console.log(data + " " + data[0] + " " + data[1]);
     })
 
     this.SocketService.getMovieRemove().subscribe( (data ) => {
-      //console.log(data);
-      //this.removeMovie(data['title']);
 
       const user = {name: data['user']['name'], room: data['user']['room']};
       

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-//import { title } from 'process';
 import { map } from 'rxjs/operators';
 
 import { Movie } from './Movie';

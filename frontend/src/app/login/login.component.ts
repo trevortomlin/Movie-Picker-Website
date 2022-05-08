@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     dialogConfig.width = '500px';
     dialogConfig.height = '200px';
 
-    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     this.dialog.open(FailedLoginDialogComponent, dialogConfig);
